@@ -1,5 +1,12 @@
 import React, {Component} from 'react';
-import {SafeAreaView, View, Text, AsyncStorage, FlatList} from 'react-native';
+import {
+  SafeAreaView,
+  View,
+  Text,
+  AsyncStorage,
+  FlatList,
+  Button,
+} from 'react-native';
 import firebase from 'firebase';
 // import AsyncStorage from '@react-native-community/async-storage';
 import {TouchableOpacity} from 'react-native-gesture-handler';
@@ -31,7 +38,7 @@ export default class HomeScreen extends Component {
   renderRow = ({item}) => {
     return (
       <TouchableOpacity
-        onPres={() => this.props.navigation.navigate('Chat', item)}
+        onPress={() => this.props.navigation.navigate('Chat', item.name)}
         style={{padding: 10, borderBottomColor: '#ccc', borderBottomWidth: 1}}>
         <Text style={{fontSize: 20}}>{item.name}</Text>
       </TouchableOpacity>
@@ -49,6 +56,10 @@ export default class HomeScreen extends Component {
           data={this.state.users}
           renderItem={this.renderRow}
           keyExtractor={item => item.phone}
+        />
+        <Button
+          title="checkkkk"
+          onPress={() => this.props.navigation.navigate('Auth')}
         />
       </SafeAreaView>
     );

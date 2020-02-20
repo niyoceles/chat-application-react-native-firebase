@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   Alert,
   AsyncStorage,
+  Button,
 } from 'react-native';
 import styles from '../constants/styles';
 import User from '../User';
@@ -69,6 +70,10 @@ class loginScrean extends Component {
         <TouchableOpacity onPress={this.handleSubmit}>
           <Text style={styles.btnTextSubmit}>Submit</Text>
         </TouchableOpacity>
+        <Button
+          title="checkkkk"
+          onPress={() => this.props.navigation.navigate('Home')}
+        />
       </View>
     );
   }

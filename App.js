@@ -54,13 +54,7 @@ class App extends React.Component {
             }}
           />
           <Stack.Screen name="AuthLoading" component={AuthLoadingScreen} />
-          <Stack.Screen
-            name="Chat"
-            component={ChatScreen}
-            options={{
-              title: this.props.userName,
-            }}
-          />
+          <Stack.Screen name="Chat" component={ChatScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     );
