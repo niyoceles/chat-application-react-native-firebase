@@ -30,7 +30,7 @@ export default class ChatScreen extends Component {
     };
   }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     firebase
       .database()
       .ref('messages')

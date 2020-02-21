@@ -6,25 +6,25 @@ import {
   TouchableOpacity,
   FlatList,
   Button,
+  AsyncStorage,
 } from 'react-native';
 
 import firebase from 'firebase';
 import User from '../User';
 
 export default class HomeScreen extends Component {
-  static navigationOptions = ({navigation, route}) => {
-    return {
-      title: 'Chats',
-      headerRight: (
-        <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
-          <Image
-            source={require('../images/user.png')}
-            style={{width: 32, height: 32, marginRight: 10}}
-          />
-        </TouchableOpacity>
-      ),
-    };
-  };
+  static navigationOptions = ({navigation, route}) => ({
+    title: 'Chats',
+    headerLeft: null,
+    headerRight: () => (
+      <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
+        <Image
+          source={require('../images/user.png')}
+          style={{width: 32, height: 32, marginRight: 10}}
+        />
+      </TouchableOpacity>
+    ),
+  });
 
   state = {
     users: [],
@@ -47,10 +47,10 @@ export default class HomeScreen extends Component {
     });
   }
 
-  // _logOut = async () => {
-  //   await AsyncStorage.clear();
-  //   this.props.navigation.navigate('Auth');
-  // };
+  _logOut = async () => {
+    await AsyncStorage.clear();
+    this.props.navigation.navigate('Auth');
+  };
 
   renderRow = ({item}) => {
     return (
@@ -63,9 +63,9 @@ export default class HomeScreen extends Component {
   };
 
   render() {
-    // if (!User.phone) {
-    //   this.props.navigation.navigate('Auth');
-    // }
+    if (!User.phone) {
+      this.props.navigation.navigate('Auth');
+    }
 
     return (
       <SafeAreaView>
@@ -73,10 +73,6 @@ export default class HomeScreen extends Component {
           data={this.state.users}
           renderItem={this.renderRow}
           keyExtractor={item => item.phone}
-        />
-        <Button
-          title="checkkkk"
-          onPress={() => this.props.navigation.navigate('Auth')}
         />
       </SafeAreaView>
     );
