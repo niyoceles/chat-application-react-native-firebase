@@ -23,7 +23,7 @@ const fs = RNFetchBlob.fs;
 window.XMLHttpRequest = RNFetchBlob.polyfill.XMLHttpRequest;
 window.Blob = Blob;
 
-export default class ProfileScreen extends React.Component {
+class ProfileScreen extends Component {
   static navigationOptions = {
     title: 'Profile',
   };
@@ -50,11 +50,13 @@ export default class ProfileScreen extends React.Component {
       noData: true,
     };
     ImagePicker.launchImageLibrary(options, response => {
-      console.log('response', response);
+      console.log('Response = ', response);
       if (response.didCancel) {
-        console.log('You cancelled image picker 😟');
+        console.log('User cancelled image picker');
       } else if (response.error) {
-        alert('And error occured: ', response.error);
+        console.log('ImagePicker Error: ', response.error);
+      } else if (response.customButton) {
+        console.log('User tapped custom button: ', response.customButton);
       } else {
         // Create a root reference
         const storage = firebase.storage();
@@ -118,6 +120,10 @@ export default class ProfileScreen extends React.Component {
         {image && (
           <Image source={{uri: image.uri}} style={{width: 200, height: 200}} />
         )}
+        <Image
+          source={{uri: User.image}}
+          style={{width: 200, height: 200, borderRadius: 100, marginBottom: 10}}
+        />
         <Button title="Choose photo" onPress={this.handleChoosePhoto} />
         <Text style={{fontSize: 20}}>Mobile Number: {User.phone}</Text>
         <TextInput
@@ -135,3 +141,5 @@ export default class ProfileScreen extends React.Component {
     );
   }
 }
+
+export default ProfileScreen;

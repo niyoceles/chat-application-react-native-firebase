@@ -4,7 +4,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    alignContent: 'center',
+    alignItems: 'center',
     backgroundColor: '#F5FCFF',
   },
   input: {
@@ -16,6 +16,10 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     marginLeft: 20,
     color: '#000000',
+  },
+  btnText: {
+    color: 'green',
+    fontSize: 20,
   },
   btnTextSubmit: {
     color: 'darkblue',
