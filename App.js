@@ -30,21 +30,11 @@ class App extends React.Component {
   render() {
     return (
       <NavigationContainer>
-        <Stack.Navigator>
+        <Stack.Navigator initialRouteName="Home">
           <Stack.Screen
             name="Home"
             component={HomeScreen}
-            options={{
-              title: 'Chats',
-              headerStyle: {
-                backgroundColor: '#f4511e',
-              },
-              headerTintColor: '#fff',
-              headerTitleStyle: {
-                fontWeight: 'bold',
-                textAlign: 'center',
-              },
-            }}
+            options={ChatScreen.HomeScreen}
           />
           <Stack.Screen
             name="Auth"
@@ -54,7 +44,11 @@ class App extends React.Component {
             }}
           />
           <Stack.Screen name="AuthLoading" component={AuthLoadingScreen} />
-          <Stack.Screen name="Chat" component={ChatScreen} />
+          <Stack.Screen
+            name="Chat"
+            component={ChatScreen}
+            options={ChatScreen.navigationOptions}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     );
