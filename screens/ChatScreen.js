@@ -16,7 +16,7 @@ import User from '../User';
 
 export default class ChatScreen extends Component {
   static navigationOptions = ({route}) => ({
-    title: 'Chat with ' + route.params.name,
+    title: route.params.name,
   });
 
   constructor(props) {
@@ -96,7 +96,7 @@ export default class ChatScreen extends Component {
           flexDirection: 'row',
           width: '70%',
           alignSelf: item.from === User.phone ? 'flex-end' : 'flex-start',
-          backgroundColor: item.from === User.phone ? '#00897b' : '#7cb342',
+          backgroundColor: item.from === User.phone ? '#00A398' : '#7cb342',
           borderRadius: 10,
           marginBottom: 10,
         }}>

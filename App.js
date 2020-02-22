@@ -1,20 +1,43 @@
 // import React from 'react';
 import 'react-native-gesture-handler';
 import * as React from 'react';
-import {View, Text} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import firebase from 'firebase';
-// import {createSwitchNavigator, createAppContainer} from 'react-navigation';
 import LoginScreen from './screens/LoginScreen';
 import HomeScreen from './screens/HomeScreen';
 import AuthLoadingScreen from './screens/AuthLoadingScreen';
 import ChatScreen from './screens/ChatScreen';
 import ProfileScreen from './screens/ProfileScreen';
+import {
+  API_KEY,
+  AUTH_DOMAIN,
+  DATABASE_URL,
+  PROJECT_ID,
+  STORAGE_BUCKET,
+  MESSAGING_SENDER_ID,
+  APP_ID,
+  MEASUMENT_ID,
+} from 'react-native-dotenv';
 
 const Stack = createStackNavigator();
 
 class App extends React.Component {
+  UNSAFE_componentWillMount() {
+    // Initialize Firebase
+    var config = {
+      apiKey: API_KEY,
+      authDomain: AUTH_DOMAIN,
+      databaseURL: DATABASE_URL,
+      projectId: PROJECT_ID,
+      storageBucket: STORAGE_BUCKET,
+      messagingSenderId: MESSAGING_SENDER_ID,
+      appId: APP_ID,
+      measurementId: MEASUMENT_ID,
+    };
+    firebase.initializeApp(config);
+  }
+
   render() {
     return (
       <NavigationContainer>

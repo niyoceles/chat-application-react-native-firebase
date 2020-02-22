@@ -5,7 +5,6 @@ import {
   Text,
   TouchableOpacity,
   FlatList,
-  Button,
   AsyncStorage,
 } from 'react-native';
 

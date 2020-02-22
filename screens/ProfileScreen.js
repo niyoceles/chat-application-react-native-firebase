@@ -4,12 +4,9 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
-  Alert,
   AsyncStorage,
   Button,
-  View,
   Image,
-  ActivityIndicator,
   Platform,
 } from 'react-native';
 import User from '../User';
@@ -30,7 +27,7 @@ class ProfileScreen extends Component {
 
   state = {
     name: User.name,
-    image: null,
+    image: User.image,
     loading: false,
   };
 
@@ -83,11 +80,13 @@ class ProfileScreen extends Component {
           .then(url => {
             console.log(url);
             User.image = url;
-            firebase
-              .database()
-              .ref('users')
-              .child(User.phone)
-              .set({name: User.name, image: url});
+            if (User.image !== this.state.image) {
+              firebase
+                .database()
+                .ref('users')
+                .child(User.phone)
+                .set({name: User.name, image: url});
+            }
           })
           .catch(error => {
             console.log(error.message);
@@ -95,6 +94,7 @@ class ProfileScreen extends Component {
         this.setState({
           image: response,
         });
+        User.image = response;
       }
     });
   };
@@ -117,13 +117,33 @@ class ProfileScreen extends Component {
     const {image} = this.state;
     return (
       <SafeAreaView style={styles.container}>
-        {image && (
-          <Image source={{uri: image.uri}} style={{width: 200, height: 200}} />
+        {image ? (
+          <Image
+            source={{uri: image.uri}}
+            style={{width: 200, height: 200, borderRadius: 100}}
+          />
+        ) : User.image ? (
+          <Image
+            source={{uri: User.image}}
+            style={{
+              width: 200,
+              height: 200,
+              borderRadius: 100,
+              marginBottom: 10,
+            }}
+          />
+        ) : (
+          <Image
+            source={require('../images/user.png')}
+            style={{
+              width: 200,
+              height: 200,
+              borderRadius: 100,
+              marginBottom: 10,
+            }}
+          />
         )}
-        <Image
-          source={{uri: User.image}}
-          style={{width: 200, height: 200, borderRadius: 100, marginBottom: 10}}
-        />
+
         <Button title="Choose photo" onPress={this.handleChoosePhoto} />
         <Text style={{fontSize: 20}}>Mobile Number: {User.phone}</Text>
         <TextInput
@@ -132,10 +152,10 @@ class ProfileScreen extends Component {
           onChangeText={this.handleChange('name')}
         />
         <TouchableOpacity onPress={this.changeName}>
-          <Text style={styles.btnText}>update name</Text>
+          <Text style={styles.btnTextUpdate}>update name</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={this._logout}>
-          <Text style={styles.btnText}>Logout</Text>
+          <Text style={styles.btnTextLogout}>Logout</Text>
         </TouchableOpacity>
       </SafeAreaView>
     );
