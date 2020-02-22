@@ -1,17 +1,24 @@
 # chat-native-app
+
 This project was developed in React Native and Firebase
 
 # HERE ARE THE SCREEN SHOOT:
 
-
+1. ![alt text](https://github.com/niyoceles/chat-native-app/blob/master/images/screenshoots/login.PNG)
+2. ![alt text](https://github.com/niyoceles/chat-native-app/blob/master/images/screenshoots/chats.PNG)
+3. ![alt text](https://github.com/niyoceles/chat-native-app/blob/master/images/screenshoots/chatting.PNG)
+4. ![alt text](https://github.com/niyoceles/chat-native-app/blob/master/images/screenshoots/profile.PNG)
+5. ![alt text](https://github.com/niyoceles/chat-native-app/blob/master/images/screenshoots/update-profile.PNG)
 
 ## Available Scripts
 
 In the project directory, you can run:
 
-### Create an application account on firebase 
+### Create an application account on firebase
+
 ### Replace your application config Value with :
-```   apiKey: API_KEY,
+
+```apiKey: API_KEY,
       authDomain: AUTH_DOMAIN,
       databaseURL: DATABASE_URL,
       projectId: PROJECT_ID,
@@ -22,6 +29,7 @@ In the project directory, you can run:
 ```
 
 ### Make sure that you have android phone or an Emulator
+
 ### Connect your Android phone or run your Emulator
 
 ### `yarn install`
@@ -33,4 +41,5 @@ Install the app dependencies in project.
 Install and run the app in your device
 
 ### `yarn start`
+
 Runs the app server in development mode
