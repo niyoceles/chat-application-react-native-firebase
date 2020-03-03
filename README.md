@@ -1,4 +1,4 @@
-# chat-native-app
+# chat-application-react-native-firebase
 
 This project was developed in React Native and Firebase
 
